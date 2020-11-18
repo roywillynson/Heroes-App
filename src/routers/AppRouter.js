@@ -12,13 +12,12 @@ import RoutesWithNavBar from './RoutesWithNavBar';
 const AppRouter = () => {
     return (
         <Router>  
-            
                 <Switch>    
                     <Route exact path="/login" component={ LoginPage }></Route>
                     <Route path="/" component={ RoutesWithNavBar }></Route>
                 </Switch>
         </Router>
     )
-}
+};
 
-export default AppRouter
+export default AppRouter;
