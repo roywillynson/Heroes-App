@@ -14,7 +14,7 @@ const HeroeCard = ({
             <div className="box">
                 <article className="media">
                     <div className="media-left">
-                    <figure className="image has-background-grey-light" style={ { width:'85px', maxWidth: '85px' } } >
+                    <figure className="image has-background-grey-lighter" style={ { width:'85px', maxWidth: '85px' } } >
                         <img src={`./assets/heroes/${ id }.jpg`} alt={ superhero } />
                     </figure>
                     </div>
