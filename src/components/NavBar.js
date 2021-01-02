@@ -1,7 +1,25 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, NavLink, useHistory } from 'react-router-dom'
+import AuthContext from '../auth/authContext'
+import types from '../types/types';
 
 const NavBar = ({ title }) => {
+
+    const { user, dispatch } = useContext(AuthContext);
+    const { name } = user;
+    const history = useHistory();
+
+    const handleLogout = () => {
+        
+        // 1. dispatch logout
+        dispatch({
+            type: types.LOGOUT
+        })
+
+        // Redirect to login
+        history.replace('/login');
+    }
+
     return (
         <>
             <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -34,12 +52,12 @@ const NavBar = ({ title }) => {
                         <div className="navbar-end">
                             <div className="navbar-item">
                                 <div className="buttons">
-                                    {/* <Link className="button is-primary" to="/login">
-                                        <strong>Sign up</strong>
-                                    </Link> */}
-                                <Link className="button is-light" to="/login">
-                                    Log out
-                                </Link>
+                                    <span className="button is-primary">
+                                        { name }
+                                    </span> 
+                                    <button className="button is-light" onClick={ handleLogout }>
+                                        Log out
+                                    </button>
                                 </div>
                             </div>
                         </div>

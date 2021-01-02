@@ -1,23 +1,38 @@
-import React from 'react'
+import React, { useContext }  from 'react'
 import {
-    HashRouter  as Router,
+    HashRouter as Router,
     Switch,
-    Route,
 } from 'react-router-dom';
-
+// Context
+import AuthContext from '../auth/authContext';
 // Components
-import LoginPage from '../components/LoginPage';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from "./PublicRoute";
 import RoutesWithNavBar from './RoutesWithNavBar';
+// pages
+import LoginPage from '../components/LoginPage';
+
 
 const AppRouter = () => {
+
+    // hooks
+    const { user } = useContext(AuthContext)
+
     return (
         <Router>  
                 <Switch>    
-                    <Route exact path="/login" component={ LoginPage }></Route>
-                    <Route path="/" component={ RoutesWithNavBar }></Route>
+                    <PublicRoute exact path="/login" component={ LoginPage } isAuthenticated={ user.logged } />
+                    <PrivateRoute 
+                        path="/" 
+                        component={ RoutesWithNavBar } 
+                        isAuthenticated={ user.logged } 
+                    />
                 </Switch>
         </Router>
     )
 };
+
+
+
 
 export default AppRouter;
